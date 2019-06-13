@@ -1,2 +1,2 @@
 # PBot
-This is a purchasing bot.
+This is a purchasing bot. 
