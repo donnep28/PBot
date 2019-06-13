@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import time 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
@@ -14,15 +13,14 @@ def compare(color_lst, item_lst):
             j += 1
         i += 1
 
-def main():
-    t0 = time.time()
+def getItem():
 
-    html = urlopen("http://www.supremenewyork.com/shop/all/shoes") # Insert your URL to extract
+    html = urlopen("http://www.supremenewyork.com/shop/all/jackets") # Insert your URL to extract
     bsObj = BeautifulSoup(html.read(), 'html.parser')
 
-    item = 'Jordan'
-    color = 'White'
-    
+    item = 'Crinkle Anorak'
+    color = 'Navy'
+
     item_lst = []
     color_lst = []
     for l in bsObj.find_all('a'):
@@ -31,10 +29,6 @@ def main():
             item_lst.append(link)
         if color in link:
             color_lst.append(link)
-    
-    print(compare(color_lst, item_lst))
-    t1 = time.time()
-    print(t1-t0)
 
-if __name__ == "__main__":
-    main()
+    final = compare(color_lst, item_lst)
+    return final.split('"')[3]
