@@ -13,17 +13,14 @@ def compare(color_lst, item_lst):
             j += 1
         i += 1
 
-def getItem():
+def getItem(category, item, color):
 
-    html = urlopen("http://www.supremenewyork.com/shop/all/jackets")
-    bsObj = BeautifulSoup(html.read(), 'html.parser')
-
-    item = 'Crinkle Anorak'
-    color = 'Navy'
+    html = urlopen("http://www.supremenewyork.com/shop/all/" + category)
+    result = BeautifulSoup(html.read(), 'html.parser')
 
     item_lst = []
     color_lst = []
-    for l in bsObj.find_all('a'):
+    for l in result.find_all('a'):
         link = str(l)
         if item in link:
             item_lst.append(link)

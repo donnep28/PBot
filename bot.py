@@ -15,13 +15,21 @@ def details():
     return info
 
 def main():
+    
+    print('Category: ')
+    category = input()
+    print('Item Name: ')
+    item = input()
+    print('Item Color: ')
+    color = input()
+
     info = details()
     t0 = time.time()
     browser = webdriver.Chrome('/home/philip/Downloads/chromedriver')
     check = True
     while check:
         try:
-            item = 'https://www.supremenewyork.com' + getItem()
+            item = 'https://www.supremenewyork.com' + getItem(category, item, color)
             check = False
         except:
             continue
