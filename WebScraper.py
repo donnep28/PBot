@@ -15,7 +15,7 @@ def compare(color_lst, item_lst):
 
 def getItem():
 
-    html = urlopen("http://www.supremenewyork.com/shop/all/jackets") # Insert your URL to extract
+    html = urlopen("http://www.supremenewyork.com/shop/all/jackets")
     bsObj = BeautifulSoup(html.read(), 'html.parser')
 
     item = 'Crinkle Anorak'
