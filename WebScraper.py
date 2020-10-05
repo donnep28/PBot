@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+from selenium import webdriver
 
 def compare(color_lst, item_lst):
     i = 0
@@ -14,18 +15,29 @@ def compare(color_lst, item_lst):
         i += 1
 
 def getItem(category, item, color):
+    check = True
+    while check:
+        browser = webdriver.Chrome('/home/mark/Downloads/chromedriver')
 
-    html = urlopen("http://www.supremenewyork.com/shop/all/" + category)
-    result = BeautifulSoup(html.read(), 'html.parser')
+        # Insert your URL to extract
+        html = urlopen("http://www.supremenewyork.com/shop/all/" + category)
+        bsObj = BeautifulSoup(html.read(), 'html.parser')
 
-    item_lst = []
-    color_lst = []
-    for l in result.find_all('a'):
-        link = str(l)
-        if item in link:
-            item_lst.append(link)
-        if color in link:
-            color_lst.append(link)
+        item_lst = []
+        color_lst = []
+        for l in bsObj.find_all('a'):
+            link = str(l)
+            if item in link:
+                item_lst.append(link)
+            if color in link:
+                color_lst.append(link)
 
-    final = compare(color_lst, item_lst)
+        if len(item_lst) == 0:
+            browser.quit()
+
+        final = compare(color_lst, item_lst)
+        if final:
+            check = False
+            browser.quit()
+
     return final.split('"')[3]
