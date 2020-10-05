@@ -17,7 +17,7 @@ def compare(color_lst, item_lst):
 def getItem(category, item, color):
     check = True
     while check:
-        browser = webdriver.Chrome('/home/mark/Downloads/chromedriver')
+        browser = webdriver.Chrome('/home/philip/Downloads/chromedriver')
 
         # Insert your URL to extract
         html = urlopen("http://www.supremenewyork.com/shop/all/" + category)

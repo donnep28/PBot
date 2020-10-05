@@ -17,20 +17,30 @@ def details():
     return info
 
 def main():
+    sizeCategories = ['jackets', 'shirts', 'tops_sweaters', 'sweatshirts']
     # Input item info
-    print(Fore.MAGENTA + "Choose Category:" + Fore.CYAN + "jackets, shirts, top/sweaters, sweatshirts, pants, shorts, hats, bags, accessories, shoes, skate" + Fore.GREEN)
+    print(Fore.MAGENTA + "Choose Category:" + Fore.CYAN + " jackets, shirts, tops_sweaters, sweatshirts, pants, shorts, hats, bags, accessories, shoes, skate" + Fore.GREEN)
     category = input()
     print(Fore.MAGENTA + "Item Name: " + Fore.GREEN)
     name = input()
     print(Fore.MAGENTA + "Item Color: " + Fore.GREEN)
     color = input()
+    if category in sizeCategories:
+        print(Fore.MAGENTA + "Choose Size:" + Fore.CYAN + " Small, Medium, Large, XLarge" + Fore.GREEN)
+        size = input()
 
     t0 = time.time()
     info = details()
 
     item = 'https://www.supremenewyork.com' + getItem(category, name, color)
-    browser = webdriver.Chrome('/home/mark/Downloads/chromedriver')
+    browser = webdriver.Chrome('/home/philip/Downloads/chromedriver')
     browser.get(item)
+
+    if size:
+        try:
+            browser.find_element_by_xpath('//*[@id="size"]').send_keys(size)
+        except:
+            print('Size Sold Out')
 
     browser.find_element_by_xpath('//*[@id="add-remove-buttons"]/input').click()
     val = True
