@@ -17,7 +17,7 @@ def details():
     return info
 
 def main():
-    sizeCategories = ['jackets', 'shirts', 'tops_sweaters', 'sweatshirts']
+    sizeCategories = ['jackets', 'shirts', 'tops_sweaters', 'sweatshirts', 'pants']
     # Input item info
     print(Fore.MAGENTA + "Choose Category:" + Fore.CYAN + " jackets, shirts, tops_sweaters, sweatshirts, pants, shorts, hats, bags, accessories, shoes, skate" + Fore.GREEN)
     category = input()
