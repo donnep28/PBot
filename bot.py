@@ -33,7 +33,7 @@ def main():
     info = details()
 
     item = 'https://www.supremenewyork.com' + getItem(category, name, color)
-    browser = webdriver.Chrome('/home/philip/Downloads/chromedriver')
+    browser = webdriver.Chrome('./chromedriver')
     browser.get(item)
 
     if size:
